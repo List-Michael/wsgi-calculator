@@ -75,14 +75,27 @@ def instructions():
   """
   instruction = """<html>
 <head>
-<title>Assignment 4 - WSGI Calculator</title>
+<title>WSGI Calculator</title>
 </head>
+
+<i>UW Python Certificate - py230</i><br>
+<i>Assignment 4 - WSGI Calculator</i><br>
+<i>Student: Michael List</i><br>
+
+<h1>WSGI Calculator</h1>
 <body>
 <p>This simple WSGI web app allows the user to add, subtract, multiply and divide numbers provided in the URL</p>
 <p>For example, if you open a browser at `http://localhost:8080/multiple/3/5' then the response
 body in the browser will be `15`.</p>
 <br>
-<h2>Examples</h2>
+<h2>URLs</h2>
+<ul>
+<li>Multiplication: http://localhost:8080/multiply/</li>
+<li>Addition: http://localhost:8080/add/</li>
+<li>Substraction: http://localhost:8080/subtract/</li>
+<li>Division: http://localhost:8080/divide/</li>
+</ul>
+<h3>Examples</h3>
 <ul>
   <li>http://localhost:8080/multiply/3/5   => 15</li>
   <li>http://localhost:8080/add/23/42      => 65</li>
