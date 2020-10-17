@@ -46,28 +46,36 @@ def multiply(*args):
   """
   Returns a string with the result of the multiplication of the arguments
   """
-  multiple = "0"
-  return multiple
+  a = int(args[0])
+  b = int(args[1])
+  multiple = a*b
+  return str(multiple)
 
 def add(*args):
   """ Returns a STRING with the sum of the arguments """
 
-  cal_sum = "0"
-  return cal_sum
+  a = int(args[0])
+  b = int(args[1])
+  cal_sum = a + b
+  return str(cal_sum)
 
 def subtract(*args):
   """
   Returns a string with the subtraction result of the arguments
   """
-  difference = "0"
-  return difference
+  a = int(args[0])
+  b = int(args[1])
+  difference = a - b
+  return str(difference)
 
 def divide(*args):
   """
   Returns a string with the division result of the arguments
   """
-  quotient = "0"
-  return quotient
+  a = int(args[0])
+  b = int(args[1])
+  quotient = a/b
+  return str(quotient)
 
 def instructions():
   """
@@ -95,7 +103,7 @@ body in the browser will be `15`.</p>
 <li>Substraction: http://localhost:8080/subtract/</li>
 <li>Division: http://localhost:8080/divide/</li>
 </ul>
-<h3>Examples</h3>
+<h2>Examples</h2>
 <ul>
   <li>http://localhost:8080/multiply/3/5   => 15</li>
   <li>http://localhost:8080/add/23/42      => 65</li>
