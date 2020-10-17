@@ -40,43 +40,96 @@ To submit your homework:
 
 
 """
+import traceback
 
+def multiply(*args):
+  """
+  Returns a string with the result of the multiplication of the arguments
+  """
+  multiple = "0"
+  return multiple
 
 def add(*args):
-    """ Returns a STRING with the sum of the arguments """
+  """ Returns a STRING with the sum of the arguments """
 
-    # TODO: Fill sum with the correct value, based on the
-    # args provided.
-    sum = "0"
+  cal_sum = "0"
+  return cal_sum
 
-    return sum
+def subtract(*args):
+  """
+  Returns a string with the subtraction result of the arguments
+  """
+  difference = "0"
+  return difference
 
-# TODO: Add functions for handling more arithmetic operations.
+def divide(*args):
+  """
+  Returns a string with the division result of the arguments
+  """
+  quotient = "0"
+  return quotient
+
+def instructions():
+  """
+  Instructions for using the calculator application
+  """
 
 def resolve_path(path):
     """
     Should return two values: a callable and an iterable of
     arguments.
     """
+    funcs = {
+        '': instructions,
+        'add': add,
+        'subtract': subtract,
+        'divide': divide,
+        'multiply': multiply
+    }
 
-    # TODO: Provide correct values for func and args. The
-    # examples provide the correct *syntax*, but you should
-    # determine the actual values of func and args using the
-    # path.
-    func = add
-    args = ['25', '32']
+    path = path.strip('/').split('/')
+
+    func_name = path[0]
+    args = path[1:]
+
+    try:
+        func = funcs[func_name]
+    except KeyError:
+        raise NameError
 
     return func, args
 
+
 def application(environ, start_response):
-    # TODO: Your application code from the book database
-    # work here as well! Remember that your application must
-    # invoke start_response(status, headers) and also return
-    # the body of the response in BYTE encoding.
-    #
-    # TODO (bonus): Add error handling for a user attempting
-    # to divide by zero.
-    pass
+    '''
+    Your application code from the book database
+    work here as well! Remember that your application must
+    invoke start_response(status, headers) and also return
+    the body of the response in BYTE encoding.
+
+    (bonus): Add error handling for a user attempting
+    to divide by zero.
+    '''
+    headers = [("Content-type", "text/html")]
+    try:
+        path = environ.get('PATH_INFO', None)
+        if path is None:
+          raise NameError
+        func, args = resolve_path(path)
+        body = func(*args)
+        status = "200 OK"
+    except NameError:
+        status = "404 Not Found"
+        body = "<h1>Not Found</h1>"
+    except Exception:
+        status = "500 Internal Server Error"
+        body = "<h1>Internal Server Error</h1>"
+        print(traceback.format_exc())
+    finally:
+        headers.append(('Content-length', str(len(body))))
+        start_response(status, headers)
+        return [body.encode('utf8')]
+
 
 if __name__ == '__main__':
     from wsgiref.simple_server import make_server
