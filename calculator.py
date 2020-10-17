@@ -73,6 +73,27 @@ def instructions():
   """
   Instructions for using the calculator application
   """
+  instruction = """<html>
+<head>
+<title>Assignment 4 - WSGI Calculator</title>
+</head>
+<body>
+<p>This simple WSGI web app allows the user to add, subtract, multiply and divide numbers provided in the URL</p>
+<p>For example, if you open a browser at `http://localhost:8080/multiple/3/5' then the response
+body in the browser will be `15`.</p>
+<br>
+<h2>Examples</h2>
+<ul>
+  <li>http://localhost:8080/multiply/3/5   => 15</li>
+  <li>http://localhost:8080/add/23/42      => 65</li>
+  <li>http://localhost:8080/subtract/23/42 => -19</li>
+  <li>http://localhost:8080/divide/22/11   => 2</li>
+</ul>
+</body>
+</html>
+
+  """
+  return instruction
 
 def resolve_path(path):
     """
